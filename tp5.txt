@@ -1,0 +1,66 @@
+
+CREATE TABLE Empleados (
+    ID_Empleado serial PRIMARY KEY,
+    NombreCompleto VARCHAR(50),
+    Apellido VARCHAR(50),
+    SalarioAnual NUMERIC(10, 2)
+);
+
+INSERT INTO Empleados (NombreCompleto, Apellido, SalarioAnual)
+VALUES
+    ('Gabriel', 'Fernández', 60000.00),
+    ('Marina', 'Martínez', 55000.00),
+    ('Raúl', 'López', 58000.00),
+    ('Victoria', 'Sánchez', 70000.00),
+    ('Andrés', 'Rodríguez', 68000.00),
+    ('Isabella', 'Gómez', 59000.00),
+    ('Santiago', 'Ramírez', 62000.00),
+    ('Eva', 'Hernández', 75000.00),
+    ('Mateo', 'Torres', 65000.00),
+    ('Lucía', 'Díaz', 71000.00),
+    ('Elena', 'Fernández', 67000.00),
+    ('Martín', 'Pérez', 71000.00),
+    ('Camila', 'Herrera', 78000.00),
+    ('Simón', 'González', 79000.00),
+    ('Isabel', 'Soto', 77000.00);
+
+UPDATE Empleados
+SET SalarioAnual = SalarioAnual * 1.20;
+
+
+SELECT NombreCompleto, Apellido, SalarioAnual
+FROM Empleados
+ORDER BY SalarioAnual DESC;
+
+DELETE FROM Empleados
+WHERE NombreCompleto LIKE 'S%';
+
+INSERT INTO Empleados (NombreCompleto, Apellido, SalarioAnual)
+VALUES
+    ('Mateo', 'Herrera', 850000.00),
+    ('Luna', 'Sánchez', 980000.00);
+
+
+ALTER TABLE Empleados
+ADD COLUMN Departamento VARCHAR(50);
+
+UPDATE Empleados
+SET Departamento = 'Desarrollo Web'
+WHERE ID_Empleado IN (1, 2, 3);
+
+UPDATE Empleados
+SET Departamento = 'Control de Calidad'
+WHERE ID_Empleado BETWEEN 4 AND 7;
+
+UPDATE Empleados
+SET Departamento = 'Desarrollo de Software'
+WHERE Departamento IS NULL;
+
+SELECT COUNT(*)
+FROM Empleados
+WHERE Departamento = 'Control de Calidad' AND SalarioAnual > 250000.00;
+
+
+SELECT COUNT(*)
+FROM Empleados
+WHERE SalarioAnual > 600000.00;
